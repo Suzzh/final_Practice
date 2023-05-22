@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>모임모집</title>
+
+  <style>
+
+    @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
+
+    @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');}
+
+    @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');}
+
+    @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 500;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');}
+
+    @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
+
+    @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
+
+    * {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+    }
+
+    html, body{
+      margin: 0 0;
+      padding: 0 0;
+      min-height: 100%;
+    }
+
+    div, input, span{
+      box-sizing: border-box;
+    }
+
+    #header{
+      width: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background-color: white;
+      z-index: 450;
+    }
+
+    #header-upper-box{
+      background-color: #FFC61A;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 77px;
+      padding: 0 200px;
+    }
+
+    #header-left{
+      display: flex;
+      align-items: center;
+    }
+
+    #header-right {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    form[name="gameSearch"] > div:first-of-type{
+      background-color: white;
+      position: relative;
+      width: 320px;
+      height: 34px;
+      padding: 2px 10px;
+      border: 2px black solid;
+      border-radius: 20px;
+    }
+
+    form[name="gameSearch"] img{
+      width: 20px;
+      position: absolute;
+      top: 5px;
+      right: 12px;
+      margin: 0;
+      -webkit-user-drag: none;
+    }
+
+    #header-right input:first-of-type{
+      width: 270px;
+      height: 25px;
+      padding-left: 20px;
+      border: none;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .sign{
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      color: black;
+    }
+
+    #signIn{
+      margin: 0 30px;
+    }
+
+    .nav{
+      margin: 0 auto;
+      display: flex;
+      border-bottom: 1px solid #D9D9D9;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 45px;
+      list-style: none;
+      padding: 0 0;
+      margin: 0 0 0 200px;
+    }
+
+    .menu li {
+      display: inline-block;
+      flex: 0 0 25%;
+      max-width: 25%;
+      height: 100%;
+      line-height: 45px;
+    }
+
+    .toMenu{
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+      margin-right: 20px;
+    }
+
+    .toMenu > img{
+      margin-left: -4px;
+      -webkit-user-drag: none;
+    }
+
+    #contents{
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      max-width: 1020px;
+      min-height: 100%;
+      padding: 129px 0 0 0;
+      font-size: 16px;
+    }
+
+    #contentsHeader{
+      margin: 0;
+      padding-top: 32px;
+      padding-bottom: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #contentsHeader h2{
+      font-size: 1.9em;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    #contentsLocation{
+      margin-bottom: 30px;
+    }
+
+    #contentsMain{
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 80px;
+      flex-grow: 1;
+      min-height: 420px;
+    }
+
+    #filter{
+      float: left;
+      width: 180px;
+      border: 1px solid #D9D9D9;
+      border-radius: 18px;
+      margin-right: 30px;
+      margin-top: 52px;
+    }
+
+    #filter h3{
+      margin: 0 0 10px 0;
+      padding: 0;
+    }
+
+    #filter div{
+      padding: 13px 20px;
+      border-bottom: 1px solid #D9D9D9;
+    }
+
+    #filter input[type="checkbox"]{
+      margin-right: 10px;
+    }
+
+    #filter ul{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #filter li{
+      margin-bottom: 4px;
+    }
+
+    #filter input[type="date"]{
+      width: 100%;
+    }
+
+
+    #filter div:last-of-type{
+      border-bottom: none;
+    }
+
+    #filter div:last-of-type > div{
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+      padding: 0;
+      align-items: center;
+    }
+
+
+    #filter div:last-of-type > div > div{
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      width: 100%;
+    }
+
+    #dateResetBtn{
+      margin-right: 10px;
+    }
+
+    #listArea{
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    form[name="gatheringSearchForm"]{
+      margin: 0 auto;
+    }
+
+
+    form[name="gatheringSearchForm"] select{
+      width: 110px;
+      height: 33px;
+      margin-right: 5px;
+      font-size: 17px;
+      padding-left: 8px;
+
+    }
+
+    form[name="gatheringSearchForm"] input[type="text"]{
+      padding-left: 8px;
+      width: 300px;
+      height: 33px;
+      margin-right: 5px;
+      margin-bottom: 20px;
+      font-size: 17px;
+    }
+
+    #gatheringSearchBtn{
+      width: 96px;
+      height: 33px;
+      font-weight: bold;
+      background-color: #1432B1;
+      color: white;
+      border: none;
+      font-size: 17px;
+    }
+
+    .gatheringPost{
+      width: 100%;
+      border: 1px solid #D9D9D9;
+      padding: 0 30px;
+      margin-bottom: 12px;
+    }
+
+    .postUpper{
+      border-bottom: 1px solid #D9D9D9;
+      padding: 18px 0 12px 0;
+    }
+
+    .profile{
+      margin-bottom: 12px;
+    }
+
+    .status{
+      width: 85px;
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 0 10px;
+      margin-right: 6px;
+    }
+
+    .title{
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .numPeople{
+      margin-left: 10px;
+      font-weight: bold;
+      color: #C53A32;
+      font-size: 15px;
+    }
+
+    .detail{
+      display: flex;
+      align-items: center;
+    }
+
+    .location, .dateTime{
+      display: flex;
+      align-items: center;
+    }
+
+    .detail img{
+      margin-right: 4px;
+    }
+
+    .location{
+      margin-right: 8px;
+    }
+
+    .postLower{
+      text-align: right;
+      display: flex;
+      justify-content: right;
+      padding: 8px 0;
+    }
+
+    .postLower span{
+      min-width: 70px;
+      padding: 0 8px;
+      text-align: center;
+      border-right: 1px solid black;
+    }
+
+    .postLower span:last-of-type{
+      border: none;
+      padding-right: 0;
+    }
+
+    footer{
+      font-size: 15px;
+      color: #DFDFDF;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 200px;
+      height: 190px;
+      background-color: #3D3D43;
+      bottom: 0;
+      clear: both;
+    }
+
+
+  </style>
+
+
+</head>
+<body>
+<div id="header">
+  <div id="header-upper-box">
+    <div id="header-left">
+      <a href="#" title="보드인포"><img src="../include/boardinfo_logo.png" width="170px"></a>
+    </div>
+    <div id="header-right">
+      <form name="gameSearch" id="gameSearch" method="get">
+        <div>
+          <input type="text" name="gameKeyword" placeholder="보드게임 찾기">
+          <img src="../include/search.png">
+        </div>
+      </form>
+      <a href="#" title="로그인" class="sign" id="signIn">로그인</a>
+      <a href="#" title="회원가입" class="sign" id="signUp">회원가입</a>
+    </div>
+  </div>
+  <div class="nav">
+    <ul class="menu">
+      <li><a href="#" class="toMenu" title="게임정보">게임정보<img src="../include/dropdown.png" width="34px"></a></li>
+      <li><a href="#" class="toMenu" title="커뮤니티">커뮤니티<img src="../include/dropdown.png" width="34px"></a></li>
+      <li><a href="#" class="toMenu" title="오프모임">오프모임<img src="../include/dropdown.png" width="34px"></a></li>
+      <li><a href="#" class="toMenu" title="중고장터">중고장터<img src="../include/dropdown.png" width="34px"></a></li>
+    </ul>
+  </div>
+</div>
+
+<div id="contents">
+  <div id="contentsHeader">
+    <h2>모임모집</h2>
+  </div>
+  <div id="contentsLocation">
+    홈 &gt 오프모임 &gt 모임모집
+  </div>
+  <div id="contentsMain">
+    <div id="filter">
+      <div>
+        <input type="checkbox">모집중만 보기
+      </div>
+      <div>
+        <h3>지역</h3>
+        <ul>
+        <li><input type="checkbox">전체</li>
+        <li><input type="checkbox">서울</li>
+        <li><input type="checkbox">부산</li>
+        <li><input type="checkbox">대구</li>
+        <li><input type="checkbox">인천</li>
+        <li><input type="checkbox">광주</li>
+        <li><input type="checkbox">대전</li>
+        <li><input type="checkbox">울산</li>
+        <li><input type="checkbox">경기</li>
+        <li><input type="checkbox">강원</li>
+        <li><input type="checkbox">충북</li>
+        <li><input type="checkbox">충남</li>
+        <li><input type="checkbox">전북</li>
+        <li><input type="checkbox">전남</li>
+        <li><input type="checkbox">경북</li>
+        <li><input type="checkbox">경남</li>
+        <li><input type="checkbox">제주</li>
+        <li><input type="checkbox">세종</li>
+        </ul>
+      </div>
+      <div>
+        <h3>기간</h3>
+        <div>
+        <input type="date">
+        <span>~</span>
+        <input type="date">
+          <div>
+            <button type="button" id="dateResetBtn">초기화</button>
+            <button type="button" id="dateSubmitBtn">검색</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="listArea">
+
+      <form name="gatheringSearchForm">
+        <select>
+          <option>전체</option>
+          <option>제목</option>
+          <option>내용</option>
+          <option>글쓴이</option>
+        </select>
+        <input type="text" name="keyword">
+        <button type="button" id="gatheringSearchBtn">검색</button>
+      </form>
+
+      <div id="gatheringList">
+
+        <div class="gatheringPost">
+          <div class="postUpper">
+            <div class="profile">
+              <span class="status">모집마감</span>
+              <span class="title">수원 레드버튼에서 모여요~!</span>
+              <span class="numPeople">(3/3명)</span>
+            </div>
+            <div class="detail">
+              <span class="location"><img src="../include/location_pin.png" width="18px">경기 수원</span>
+              <span class="dateTime"><img src="../include/date.png" width="18px"> 5.23 오후 4:30</span>
+            </div>
+          </div>
+          <div class="postLower">
+            <span>초코파이</span>
+            <span>2023.05.11</span>
+            <span>조회 9</span>
+            <span>댓글 12</span>
+          </div>
+        </div>
+
+
+        <div class="gatheringPost">
+          <div class="postUpper">
+            <div class="profile">
+              <span class="status">모집마감</span>
+              <span class="title">수원 레드버튼에서 모여요~!</span>
+              <span class="numPeople">(3/3명)</span>
+            </div>
+            <div class="detail">
+              <span class="location"><img src="../include/location_pin.png" width="18px">경기 수원</span>
+              <span class="dateTime"><img src="../include/date.png" width="18px"> 5.23 오후 4:30</span>
+            </div>
+          </div>
+          <div class="postLower">
+            <span>초코파이</span>
+            <span>2023.05.11</span>
+            <span>조회 3</span>
+            <span>댓글 2</span>
+          </div>
+        </div>
+
+
+        <div class="gatheringPost">
+          <div class="postUpper">
+            <div class="profile">
+              <span class="status">모집마감</span>
+              <span class="title">수원 레드버튼에서 모여요~!</span>
+              <span class="numPeople">(3/3명)</span>
+            </div>
+            <div class="detail">
+              <span class="location"><img src="../include/location_pin.png" width="18px">경기 수원</span>
+              <span class="dateTime"><img src="../include/date.png" width="18px"> 5.23 오후 4:30</span>
+            </div>
+          </div>
+          <div class="postLower">
+            <span>초코파이</span>
+            <span>2023.05.11</span>
+            <span>조회 12</span>
+            <span>댓글 2</span>
+          </div>
+        </div>
+
+        <div class="gatheringPost">
+          <div class="postUpper">
+            <div class="profile">
+              <span class="status">모집마감</span>
+              <span class="title">수원 레드버튼에서 모여요~!</span>
+              <span class="numPeople">(3/3명)</span>
+            </div>
+            <div class="detail">
+              <span class="location"><img src="../include/location_pin.png" width="18px">경기 수원</span>
+              <span class="dateTime"><img src="../include/date.png" width="18px"> 5.23 오후 4:30</span>
+            </div>
+          </div>
+          <div class="postLower">
+            <span>초코파이</span>
+            <span>2023.05.11</span>
+            <span>조회 12</span>
+            <span>댓글 2</span>
+          </div>
+        </div>
+
+
+        <div class="gatheringPost">
+          <div class="postUpper">
+            <div class="profile">
+              <span class="status">모집마감</span>
+              <span class="title">수원 레드버튼에서 모여요~!</span>
+              <span class="numPeople">(3/3명)</span>
+            </div>
+            <div class="detail">
+              <span class="location"><img src="../include/location_pin.png" width="18px">경기 수원</span>
+              <span class="dateTime"><img src="../include/date.png" width="18px"> 5.23 오후 4:30</span>
+            </div>
+          </div>
+          <div class="postLower">
+            <span>초코파이</span>
+            <span>2023.05.11</span>
+            <span>조회 12</span>
+            <span>댓글 2</span>
+          </div>
+        </div>
+
+
+        <div class="gatheringPost">
+          <div class="postUpper">
+            <div class="profile">
+              <span class="status">모집마감</span>
+              <span class="title">수원 레드버튼에서 모여요~!</span>
+              <span class="numPeople">(3/3명)</span>
+            </div>
+            <div class="detail">
+              <span class="location"><img src="../include/location_pin.png" width="18px">경기 수원</span>
+              <span class="dateTime"><img src="../include/date.png" width="18px"> 5.23 오후 4:30</span>
+            </div>
+          </div>
+          <div class="postLower">
+            <span>초코파이</span>
+            <span>2023.05.11</span>
+            <span>조회 12</span>
+            <span>댓글 2</span>
+          </div>
+        </div>
+
+
+        <div class="gatheringPost">
+          <div class="postUpper">
+            <div class="profile">
+              <span class="status">모집마감</span>
+              <span class="title">수원 레드버튼에서 모여요~!</span>
+              <span class="numPeople">(3/3명)</span>
+            </div>
+            <div class="detail">
+              <span class="location"><img src="../include/location_pin.png" width="18px">경기 수원</span>
+              <span class="dateTime"><img src="../include/date.png" width="18px"> 5.23 오후 4:30</span>
+            </div>
+          </div>
+          <div class="postLower">
+            <span>초코파이</span>
+            <span>2023.05.11</span>
+            <span>조회 12</span>
+            <span>댓글 2</span>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    서울특별시 강남구 테헤란로14길 6 남도빌딩 2,3F<br>
+    KH정보교육원 TEAM BOARDINFO
+  </div>
+</footer>
+
+</body>
+</html>

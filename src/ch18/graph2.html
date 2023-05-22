@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+<body>
+<canvas id="myChart"></canvas>
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['2021', '2022', '2023'],
+      datasets: [{
+        label: '# of Members',
+        data: [5, 7, 12],
+        borderWidth: 1
+      }]
+    },
+
+    options: {
+      scales: {
+        x: {
+          ticks: {
+            display: false
+          }
+        },
+        y: {
+          ticks: {
+            display: false
+          },
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          enabled: false
+        }
+      },
+      interaction: {
+        mode: 'nearest',
+        intersect: false
+      }
+    }
+  });
+
+    // options: {
+    //   scales: {
+    //     x: {
+    //       ticks: {
+    //         display: false
+    //       }
+    //     },
+    //     y: {
+    //       ticks: {
+    //         display: false
+    //       },
+    //       beginAtZero: true
+    //     }
+    //   },
+    //     plugins: {
+    //       legend: {
+    //         display: false
+    //       }
+    //     },
+    //   hover: {
+    //     mode: null
+    //   },
+    //   tooltips: {
+    //     enabled: false
+    //   }
+    //   }
+
+</script>
+</body>
+</html>

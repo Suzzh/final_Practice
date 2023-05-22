@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
+</head>
+<body>
+<div id="slider"></div>
+
+<label for="min">Min:</label>
+<input type="text" id="min" name="min">
+<br>
+<label for="max">Max:</label>
+<input type="text" id="max" name="max">
+
+<script>
+    $(function() {
+
+        $("#slider").slider({
+            range: true,
+            min: 0,
+            max: 100,
+            values: [25, 75],
+            slide: function(event, ui) {
+                $("#min").val(ui.values[0]);
+                $("#max").val(ui.values[1]);
+            }
+        });
+
+        // Set initial values
+        $("#min").val($("#slider").slider("values", 0));
+        $("#max").val($("#slider").slider("values", 1));
+
+        // Update slider values whenever the text inputs are changed
+        $("#min, #max").on("input", function() {
+            var minVal = parseInt($("#min").val());
+            var maxVal = parseInt($("#max").val());
+
+            if (minVal >= maxVal) {
+                return false;
+            }
+
+            $("#slider").slider("values", 0, minVal);
+            $("#slider").slider("values", 1, maxVal);
+        });
+    });
+</script>
+
+</body>
+</html>

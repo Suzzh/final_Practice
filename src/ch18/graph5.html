@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Graph with Range Slider</title>
+  <style>
+    #chart {
+      margin-left: -7px;
+      width: 500px;
+      height: 300px;
+      position: relative;
+      background-color: #ffffff;
+    }
+
+    #range {
+      width: 500px;
+      margin-left: 10px;
+    }
+
+    #range .ui-slider-range {
+      background-color: rgba(0, 0, 0, 0.3);
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 350px;
+      background-color: rgba(59, 117, 184, 0.3);
+    }
+
+    .ui-slider {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script>
+    $(function() {
+      var chart = $("#chart");
+      var range = $("#range");
+      var overlay = $("#overlay");
+
+      // Data for the graph
+      var data = {
+        2002: 14,
+        2003: 0,
+        2004: 15,
+        2005: 0,
+        2006: 0,
+        2007: 0,
+        2008: 16,
+        2009: 0,
+        2010: 2,
+        2011: 0,
+        2012: 0,
+        2013: 30,
+        2014: 0,
+        2015: 5,
+        2016: 0,
+        2017: 2,
+        2018: 0,
+        2019: 1,
+        2020: 2,
+        2021: 0,
+        2022: 0,
+      };
+
+      // Initialize variables for the graph
+      var width = chart.width();
+      var height = chart.height();
+      var padding = 20;
+      var maxValue = Math.max(...Object.values(data));
+      var minValue = Math.min(...Object.values(data));
+      var xScale = d3.scaleLinear()
+              .domain([2002, 2022])
+              .range([padding, width - padding]);
+      var yScale = d3.scaleLinear()
+              .domain([minValue, maxValue])
+              .range([height - padding, padding]);
+      var line = d3.line()
+              .x(function(d) { return xScale(d.year); })
+              .y(function(d) { return yScale(d.value); });
+
+      // Create the SVG element for the graph
+      var svg = d3.select("#chart")
+              .append("svg")
+              .attr("width", "100%")
+              .attr("height", "100%");
+
+      // Draw the line
+      var dataPoints = Object.keys(data).map(function(key) {
+        return {
+          year: parseInt(key),
+          value: data[key]
+        };
+      });
+      svg.append("path")
+              .datum(dataPoints)
+              .attr("d", line)
+              .attr("stroke", "blue")
+              .attr("stroke-width", 3)
+              .attr("fill", "none");
+
+      // Set up the range slider
+      range.slider({
+        range: true,
+        min: 2002,
+        max: 2022,
+        step: 1,
+        values: [2002, 2022],
+        slide: function(event, ui) {
+          var left = xScale(ui.values[0]);
+          var right = xScale(ui.values[1]);
+          overlay.css("width", right - left);
+          overlay.css("left", left);
+          var minVal = parseInt($("#min").val());
+
+        }
+      });
+
+      // Adjust the width of the range slider
+      var rangeWidth = (width - 2 * padding) * (2022 - 2002) / (xScale.domain()[1] - xScale.domain()[0]);
+      range.css("width", rangeWidth);
+
+      // Set up the overlay
+      overlay.css("width", xScale(range.slider("values", 1)) - xScale(range.slider("values", 0)));
+      overlay.css("left", xScale(range.slider("values", 0)));
+
+      // Add the x-axis
+      var xAxis = d3.axisBottom(xScale);
+      svg.append("g")
+              .attr("transform", "translate(0, " + (height - padding) + ")")
+              .call(xAxis);
+
+      // Add the y-axis
+      var yAxis = d3.axisLeft(yScale);
+      svg.append("g")
+              .attr("transform", "translate(" + padding + ", 0)")
+              .call(yAxis);
+    });
+  </script>
+
+</head>
+<body>
+<div>
+  <div id="chart"></div>
+  <div id="range"></div>
+  <div id="overlay"></div>
+  <span id="value"></span>
+</div>
+</body>
+</html>

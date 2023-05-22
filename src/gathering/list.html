@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>모임모집</title>
+
+
+
+    <style>
+
+        *{
+            font-family: "나눔고딕";
+        }
+
+
+        html, body{
+            margin: 0 0;
+            padding: 0 0;
+            min-height: 100%;
+        }
+
+
+        div{
+            box-sizing: border-box;
+        }
+
+
+        .contents{
+            display: flex;
+            flex-direction: column;
+            margin: -129px auto -190px auto;
+            max-width: 1320px;
+            min-height: 100%;
+            padding: 129px 30px 190px 30px;
+            font-size: 16px;
+        }
+
+        .contentsMain{
+            margin-bottom: 80px;
+            flex-grow: 1;
+            min-height: 420px;
+        }
+
+
+        footer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 190px;
+            background-color: #a8b5af;
+            color: white;
+            bottom: 0;
+            text-align: center;
+            clear: both;
+        }
+
+
+        #filtering{
+            border: 1px solid black;
+            margin: 0 300px 50px 300px;
+            min-width: 360px;
+            padding: 20px 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        #location {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-flow: wrap;
+            min-width: 360px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+
+        #location > div{
+            max-width: 50px;
+            height: 28px;
+            line-height: 28px;
+            flex: 1 0 70px;
+            background-color: white;
+            margin: 3px;
+            border: 1px solid black;
+            text-align: center;
+            cursor: pointer;
+        }
+
+
+        #location > div:first-child{
+            background-color: #00007B;
+            color: white;
+            font-weight: bold;
+        }
+
+
+        input[type="date"]{
+            margin-top: 8px;
+            width: 120px;
+            height: 22px;
+        }
+
+        input[type="checkbox"]{
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        #date select, #searchMain select{
+            font-size: 16px;
+        }
+
+        select[name="searchOption"]{
+            width: 100px;
+            height: 22px;
+        }
+
+        input[name="searchKeyword"]{
+            width: 180px;
+            height: 18px;
+            margin-left: 2px;
+            margin-right: 5px;
+        }
+
+        button[id="searchBtn"]{
+            width: 90px;
+            height: 24px;
+        }
+
+
+
+        #postArea{
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .post{
+            width: 1040px;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+        }
+
+        .post > div:first-child{
+            padding: 5px 0;
+        }
+
+        .post > div:nth-child(2) img{
+            width: 20px;
+        }
+
+        .postStatus{
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 1px 5px;
+        }
+
+        .peopleNum{
+            margin-left: 6px;
+            font-size: 0.9em;
+            color: #d62828;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+<div class="contents">
+
+    <h2>모임모집</h2>
+
+
+
+    <div class="contentsMain">
+
+        <div id="filtering">
+
+            <div id="location">
+                <div>전체</div>
+                <div>서울</div>
+                <div>부산</div>
+                <div>대구</div>
+                <div>인천</div>
+                <div>광주</div>
+                <div>대전</div>
+                <div>울산</div>
+                <div>경기</div>
+                <div>강원</div>
+                <div>충북</div>
+                <div>충남</div>
+                <div>전북</div>
+                <div>전남</div>
+                <div>경북</div>
+                <div>경남</div>
+                <div>제주</div>
+                <div>세종</div>
+            </div>
+
+            <!-- <select>
+
+            <option>지역선택</option>
+
+            </select> -->
+
+            <!-- <input type="checkbox">유료
+
+            <input type="checkbox">무료 -->
+
+            <div id="date">
+                날짜:
+                <input type="date" name="startDate">-<input type="date" name="endDate">
+
+                <input type="checkbox"id="selectOngoing"><label for="selectOngoing">모집 중만 보기</label>
+
+            </div>
+
+            <div id="searchMain">
+                <select name="searchOption">
+                    <option>전체</option>
+                    <option>제목</option>
+                    <option>내용</option>
+                    <option>작성자</option>
+                </select>
+
+                <input name="searchKeyword"><button type="button" id="searchBtn">검색</button>
+
+            </div>
+
+        </div>
+
+
+        <div id="postArea">
+
+            <div class="post">
+                <div>
+                    <span class="postStatus">모집마감</span>
+                    수원 레드버튼에서 모여요~!<span class="peopleNum">3/3명</span>
+                </div>
+                <div>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/552/683/original/geo-location-pin-vector-icon.jpg">
+                    경기 수원
+                    <img src="https://www.clipartmax.com/png/middle/212-2123338_date-time-and-place-date-icon-png-transparent.png">
+                    5.23 오후 4:30
+                    <hr>
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+                    <span>초코파이 &nbsp|&nbsp 2023-05-11 &nbsp|&nbsp
+                    <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png"style="width: 20px">12
+                    <img src="https://cdn.onlinewebfonts.com/svg/img_269480.png" style="width: 20px">2
+                    </span>
+                </div>
+            </div>
+
+            <div class="post">
+                <div>
+                    <span class="postStatus">모집마감</span>
+                    수원 레드버튼에서 모여요~!<span class="peopleNum">3/3명</span>
+                </div>
+                <div>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/552/683/original/geo-location-pin-vector-icon.jpg">
+                    경기 수원
+                    <img src="https://www.clipartmax.com/png/middle/212-2123338_date-time-and-place-date-icon-png-transparent.png">
+                    5.23 오후 4:30
+                    <hr>
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+                    <span>초코파이 &nbsp|&nbsp 2023-05-11 &nbsp|&nbsp
+                    <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png"style="width: 20px">12
+                    <img src="https://cdn.onlinewebfonts.com/svg/img_269480.png" style="width: 20px">2
+                    </span>
+                </div>
+            </div>
+
+            <div class="post">
+                <div>
+                    <span class="postStatus">모집마감</span>
+                    수원 레드버튼에서 모여요~!<span class="peopleNum">3/3명</span>
+                </div>
+                <div>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/552/683/original/geo-location-pin-vector-icon.jpg">
+                    경기 수원
+                    <img src="https://www.clipartmax.com/png/middle/212-2123338_date-time-and-place-date-icon-png-transparent.png">
+                    5.23 오후 4:30
+                    <hr>
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+                    <span>초코파이 &nbsp|&nbsp 2023-05-11 &nbsp|&nbsp
+                    <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png"style="width: 20px">12
+                    <img src="https://cdn.onlinewebfonts.com/svg/img_269480.png" style="width: 20px">2
+                    </span>
+                </div>
+            </div>
+
+            <div class="post">
+                <div>
+                    <span class="postStatus">모집마감</span>
+                    수원 레드버튼에서 모여요~!<span class="peopleNum">3/3명</span>
+                </div>
+                <div>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/552/683/original/geo-location-pin-vector-icon.jpg">
+                    경기 수원
+                    <img src="https://www.clipartmax.com/png/middle/212-2123338_date-time-and-place-date-icon-png-transparent.png">
+                    5.23 오후 4:30
+                    <hr>
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+                    <span>초코파이 &nbsp|&nbsp 2023-05-11 &nbsp|&nbsp
+                    <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png"style="width: 20px">12
+                    <img src="https://cdn.onlinewebfonts.com/svg/img_269480.png" style="width: 20px">2
+                    </span>
+                </div>
+            </div>
+
+            <div class="post">
+                <div>
+                    <span class="postStatus">모집마감</span>
+                    수원 레드버튼에서 모여요~!<span class="peopleNum">3/3명</span>
+                </div>
+                <div>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/552/683/original/geo-location-pin-vector-icon.jpg">
+                    경기 수원
+                    <img src="https://www.clipartmax.com/png/middle/212-2123338_date-time-and-place-date-icon-png-transparent.png">
+                    5.23 오후 4:30
+                    <hr>
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+                    <span>초코파이 &nbsp|&nbsp 2023-05-11 &nbsp|&nbsp
+                    <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png"style="width: 20px">12
+                    <img src="https://cdn.onlinewebfonts.com/svg/img_269480.png" style="width: 20px">2
+                    </span>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+

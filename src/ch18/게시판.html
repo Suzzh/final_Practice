@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>boardWrite</title>
+
+</head>
+<body>
+<!--도서관 소식
+id
+작성일
+조회수
+작성자
+제목
+내용
+카테고리: 일반/시설/학술정보
+상단고정 공지여부-->
+
+<div class="writeNoticeBox">
+    <form name="writeNotice">
+        <table class="writeNoticeTable">
+            <tr>
+                <td>
+                    <label for="category">카테고리:</label>
+                    <select name="category" id="category">
+                        <option>일반</option>
+                        <option>시설</option>
+                        <option>학술정보</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="title">제목:</label>
+                    <input type="text" name="title" id="title" style="width:90%;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="content">내용:</label>
+                    <textarea name="content" id="content" style="width:100%; height:500px;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="등록">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

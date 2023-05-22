@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multi-Slider with Chart.js</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+</head>
+<body>
+<div style="width: 80%; margin: auto;">
+  <h2>Multi-Slider with Chart.js</h2>
+  <div id="slider-range"></div>
+  <br>
+  <canvas id="myChart" style="max-width: 800px;"></canvas>
+</div>
+<script>
+  $(function() {
+    var slider = $("#slider-range");
+    var min = $("#min");
+    var max = $("#max");
+    var chart = null;
+
+    slider.slider({
+      range: true,
+      min: 0,
+      max: 2,
+      step: 1,
+      values: [0, 2],
+      slide: function(event, ui) {
+        min.val(ui.values[0]);
+        max.val(ui.values[1]);
+        if (chart !== null) {
+          chart.options.scales.x.min = ui.values[0];
+          chart.options.scales.x.max = ui.values[1];
+          chart.update();
+        }
+      }
+    });
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['2021', '2022', '2023'],
+        datasets: [{
+          label: '# of Members',
+          data: [5, 7, 12],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            ticks: {
+              display: false
+            }
+          },
+          y: {
+            ticks: {
+              display: false
+            },
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            enabled: false
+          }
+        },
+        interaction: {
+          mode: 'nearest',
+          intersect: false
+        }
+      }
+    });
+
+    // Set initial values
+    min.val(slider.slider("values", 0));
+    max.val(slider.slider("values", 1));
+
+    // Update slider values when the text inputs are changed
+    min.on("input", function() {
+      slider.slider("values", 0, min.val());
+      chart.options.scales.x.min = min.val();
+      chart.update();
+    });
+
+    max.on("input", function() {
+      slider.slider("values", 1, max.val());
+      chart.options.scales.x.max = max.val();
+      chart.update();
+    });
+  });
+</script>
+</body>
+</html>
